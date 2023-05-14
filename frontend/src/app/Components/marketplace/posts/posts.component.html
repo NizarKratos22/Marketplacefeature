@@ -1,0 +1,132 @@
+<!--Recherche-->
+<!--<div class="event-cover">-->
+    <div class="search__container">
+      <input type="text" #myInput [(ngModel)]="titre" (input)="SearchPostByTitre()" class="search__input" placeholder="Search …" />
+      <input [hidden]="true" type="text" #myInput [(ngModel)]="date" (input)="SearchPostByDate()" class="search__input" placeholder="Search …" />
+    </div>
+ <!-- </div>-->
+
+  <!--Add-->
+<button  class="pulse" style="margin-left:43%" [hidden]="isOpened" (click)="toggle()">Create Your Own Post</button>
+
+<div [style.display]="style1" class="blog-slider6" [hidden]="hideformpost">
+  <div class="container">
+    <div class="main-card" >
+      <div class="cards"  >
+        <div class="card" style="width: 30%; height: 730px; margin-left: 12%; margin-bottom: 0%;" >
+          <i class="fa-regular fa-circle-xmark" style="color: #03C1AD; cursor: pointer;" [hidden]="!isOpened" (click)="closeNote()"></i>
+          <a href="/home/posts" [hidden]="!isOpened" (click)="closeNote()" style="margin-top: 15px;margin-left:15px; font-size: x-large;color: black;"><i class="fa-solid fa-xmark" ></i></a>
+          <h5 style="text-align: center; margin-top: 0%;">Create Your Own Post for marketplace !
+          </h5>
+          <br>
+          <form *ngIf="Post">
+            <input [hidden]="hideform" style="width: 80%; margin-left: 10%;" class="form-control"  type="text" name="titre" placeholder="Title" [(ngModel)]="Post.titre" required #titre="ngModel">
+            <br>
+            <input [hidden]="hideform" style="width: 80%; margin-left: 10%;" class="form-control"  type="text" name="email" placeholder="email" [(ngModel)]="Post.email" required #email="ngModel">
+            <br>
+            <input [hidden]="hideform" style="width: 80%; margin-left: 10%;" class="form-control"  type="text" name="numtlf" placeholder="numtlf" [(ngModel)]="Post.numtlf" required #numtlf="ngModel">
+            <br>
+            <input [hidden]="hideform" style="width: 80%; margin-left: 10%;" class="form-control"  type="text" name="fb" placeholder="Link for your facebook" [(ngModel)]="Post.fb" required #fb="ngModel">
+            <br>
+            <input [hidden]="hideform" style="width: 80%; margin-left: 10%;" class="form-control"  type="text" name="insta" placeholder="Link for your instagram" [(ngModel)]="Post.insta" required #insta="ngModel">
+            <br>
+            <input [hidden]="hideform" style="width: 80%; margin-left: 10%;" class="form-control"  type="text" name="tiktok" placeholder="Link for your tiktok" [(ngModel)]="Post.tiktok" required #tiktok="ngModel">
+            <br>
+            <textarea [hidden]="hideform" style="width: 80%; margin-left: 10%;" class="form-control"  type="text" name="description" placeholder="Description" cols="30" rows="5" [(ngModel)]="Post.description" required #description="ngModel"></textarea>
+            <br>
+            <input [hidden]="hideimage" style="width: 80%; margin-left: 10%; margin-bottom: 15px;" class="form-control" type="file" name="image" (change)="onFileSelected($event)" accept=".jpeg, .png, .jpg" />
+            <button [hidden]="hideform" class="btn btn-primary" style="margin-left: 45%;" (click)="addPost(Post)" [disabled]="titre.invalid || description.invalid || email.invalid ">Next</button>
+            <a routerLink="/home/posts" href="/home" >
+              <input [hidden]="hideimage" class="btn btn-primary" style="margin-left: 45%; margin-top: 15px;" type="submit" (click)="addImage()" value="Add Post" />
+            </a>
+            <div class="alert alert-success" [hidden]="showmsg" style=" width: 400px; margin-left: 28%; text-align: center; border-radius: 15px; margin-top: 40px;">
+            {{ msg }}
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<!--Posts-->
+<div class="blog-slider5">
+  <h4 style="text-align: center;">Here Is {{nPosts}} Posts in the marketplace</h4>
+  <br>
+  <br>
+  <div class="container" >
+    <div class="row">
+      <div  *ngFor="let posts of ListPost; let i of index" >
+        <div class="main-card" style="width: 100%;" >
+          <div class="cards"  >
+            <div class="card" style="width: 400px; min-height: 650px; height: 100%;" >
+              <div class="content">
+                <li style="list-style-type: none;">
+                  <img src="http://localhost:9091/User/{{ posts.user.profileImage }}" style="width: 50px; height: 50px; border-radius: 50%; border: 2px solid #5A54FF; display: inline;" alt=""/>
+                  <a class="nav-link" style="font-weight: bold; display: inline; color: black; ">
+                    <i class="ion-md-power"></i> {{posts.user.nom}} {{posts.user.prenom}}
+                  </a>
+                  <a (click)="openalert(contentalert); setPostId(posts._id) " [hidden]="hideSupp(posts.user._id)" [hidden]="hideUpp(posts.user._id)">
+                    <fa-icon style="color: red;" [icon]="faTrash"  class="material-icons"></fa-icon>
+                  </a>
+                  <a [hidden]="hideform" (click)="topFunction()" [routerLink]="['/updatepost',posts._id]" [hidden]="hideUpp(posts.user._id)" [hidden]="hideUpp(posts.user._id)">
+                    <fa-icon style="color: blue;" [icon]="faPencilAlt"  class="material-icons"></fa-icon>
+                  </a>
+                  <br>
+                  <br>
+                  <small>Published on : {{posts.date}}</small>
+                </li>
+                <div class="img" style="border:2px red !important;">
+                  <img src="http://localhost:9091/Post/{{ posts.image }}" style="width: 307px;max-height: 307px;" alt="Post Picture" (click)="setPostId(posts._id)" routerLink="/home/posts/post" />
+                </div>
+                <div class="details">
+                  <div class="name" style="hyphens: none;">{{posts.titre}}</div>
+                </div>
+                <br>
+                <p style="width: 80%; height: 90px;">{{posts.description}}</p>
+                <br>
+                <a style="color: #5A54FF;  margin-left: 70%; margin-top: -60px;">
+                  <fa-icon [icon]="faComment"  class="material-icons"></fa-icon>
+                  <p style="color: #5A54FF;"> {{posts.nombreCommentaire}} Comments </p>
+                </a>
+                <a style=" font-size: large; margin-left: -80%;margin-top: -18%;" (click)="likePost(posts._id)"  href="/home/posts">
+                  <fa-icon style="color: #5A54FF;" [icon]="faThumbsUp"  class="material-icons"></fa-icon>
+                </a>
+                <a style=" font-size: large; margin-left: -65%; margin-top: -6.3%; " (click)="dislikePost(posts._id)"  href="/home/posts">
+                  <fa-icon style="color: #5A54FF;" [icon]="faThumbsDown"  class="material-icons"></fa-icon>
+                </a>
+                  <p style="color: #5A54FF; margin-left: -72%;">{{posts.like}} Like</p>
+                <br>
+                <br>
+              </div>
+              <br>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+ <!--Update-->
+  
+
+<!--Delete-->
+<ng-template #contentalert let-modal>
+  <div class="modal-header">
+    <h5 style="color: black; text-align: center;" class="modal-title" id="modal-basic-title">Are You Sur to delete this Post from the marketplace ?</h5>
+    <a href="/home/posts">
+      <button type="button" class="btn-close" aria-label="Close" (click)="modal.dismiss('Cross click')"></button>
+    </a>
+  </div>
+  <div class="modal-body" >
+    <form>
+      <div class="form-group" style="align-items: center;">
+        <a style="color: red;" href="/home/posts" class="btn btn-default" (click)="deletePost(); modal.dismiss('Cross click')">Confirm</a>
+        <a style="color: green;" class="btn btn-link" class="btn btn-default" href="/home/posts" (click)="modal.dismiss('Cross click')">Cancel</a>
+      </div>
+    </form>
+  </div>
+</ng-template>

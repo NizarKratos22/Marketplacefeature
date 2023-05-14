@@ -1,0 +1,82 @@
+<div class="container">
+    <div class="main-card" >
+      <div class="cards"  >
+        <div class="card" style="width: 30%; height: 730px; margin-left: 12%; margin-bottom: 0%;" >
+          <a href="/home/posts"  (click)="closeNote()" style="margin-top: 15px;margin-left:15px; font-size: x-large;color: black;"><i class="fa-solid fa-xmark" ></i></a>
+          <h5 style="text-align: center; margin-top: 0%;">Create Your Own Post for marketplace !
+          </h5>
+          <br>
+          <form >
+            <input  style="width: 80%; margin-left: 10%;" class="form-control"  type="text" name="titre" placeholder="Title" [(ngModel)]="post.titre" required #titre="ngModel">
+            <br>
+            <input  style="width: 80%; margin-left: 10%;" class="form-control"  type="text" name="email" placeholder="email" [(ngModel)]="post.email" required #email="ngModel">
+            <br>
+            <input  style="width: 80%; margin-left: 10%;" class="form-control"  type="text" name="numtlf" placeholder="numtlf" [(ngModel)]="post.numtlf" required #numtlf="ngModel">
+            <br>
+            <input  style="width: 80%; margin-left: 10%;" class="form-control"  type="text" name="fb" placeholder="Link for your facebook" [(ngModel)]="post.fb" required #fb="ngModel">
+            <br>
+            <input  style="width: 80%; margin-left: 10%;" class="form-control"  type="text" name="insta" placeholder="Link for your instagram" [(ngModel)]="post.insta" required #insta="ngModel">
+            <br>
+            <input  style="width: 80%; margin-left: 10%;" class="form-control"  type="text" name="tiktok" placeholder="Link for your tiktok" [(ngModel)]="post.tiktok" required #tiktok="ngModel">
+            <br>
+            <textarea style="width: 80%; margin-left: 10%;" class="form-control"  type="text" name="description" placeholder="Description" cols="30" rows="5" [(ngModel)]="post.description" required #description="ngModel"></textarea>
+            <br>
+           <!--<input  style="width: 80%; margin-left: 10%; margin-bottom: 15px;" class="form-control" type="file" name="image" (change)="onFileSelected($event)" accept=".jpeg, .png, .jpg" />--> 
+            <button  class="btn btn-primary" style="margin-left: 45%;" (click)="update()" >Update</button>
+             <!--<a routerLink="/home/posts" href="/home">
+             <input [hidden]="hideimage" class="btn btn-primary" style="margin-left: 45%; margin-top: 15px;" type="submit" (click)="addImage()" value="Add Post" />
+            </a>-->
+            <div class="alert alert-success" [hidden]="showmsg" style=" width: 400px; margin-left: 28%; text-align: center; border-radius: 15px; margin-top: 40px;">
+            {{ msg }}
+            </div>
+        
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+  <app-posts></app-posts>
+  <!--
+        <div class="row mt-5">
+            
+            <div class="col-3">
+                <input [(ngModel)]="post.titre" type="text" class="form-control m-1" placeholder="Name of the project">
+            </div>
+
+
+            <div class="col-3">
+                <input [(ngModel)]="post.description" type="text" class="form-control m-1" placeholder="Description of the project">
+        </div>
+
+        <div class="col -3">
+            <input [(ngModel)]="post.email" type="text" class="form-control m-1" placeholder="Image url" disabled>
+        </div>
+
+        <div class="col-3">
+            <input [(ngModel)]="post.numtlf" type="text" class="form-control m-1" placeholder="phone number">
+        </div>
+
+        <div class="col-3">
+            <input [(ngModel)]="post.fb" type="text" class="form-control m-1" placeholder="FB link">
+        </div>
+
+        <div class="col-3">
+            <input [(ngModel)]="post.insta" type="text" class="form-control m-1" placeholder="Insta link">
+        </div>
+
+        <div class="col-3">
+            <input [(ngModel)]="post.tiktok" type="text" class="form-control m-1" placeholder="Linked Link">
+        </div>
+        <div class="col-3">
+            <input [(ngModel)]="post.linked" type="text" class="form-control m-1" placeholder="Linked Link">
+        </div>
+        <div class="col-3">
+            <input [(ngModel)]="post.ba9chich" type="text" class="form-control m-1" placeholder="Linked Link">
+        </div>
+
+        <div class="col-3">
+            <button (click)="update()" class="btn form-control m-1">Update</button>
+        </div>
+
+        </div>
+-->

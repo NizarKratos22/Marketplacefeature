@@ -1,0 +1,114 @@
+<!--Add-->
+ <button  class="pulse" style="margin-left:43%" [hidden]="isOpened" (click)="toggle()">Create Your Own Opportunity</button>
+
+ <div [style.display]="style1" class="blog-slider6" [hidden]="hideformopportunity">
+   <div class="container">
+     <div class="main-card" >
+       <div class="cards"  >
+         <div class="card" style="width: 30%; height: 730px; margin-left: 12%; margin-bottom: 0%;" >
+           <i class="fa-regular fa-circle-xmark" style="color: #03C1AD; cursor: pointer;" [hidden]="!isOpened" (click)="closeNote()"></i>
+           <a href="/home/opportunities" [hidden]="!isOpened" (click)="closeNote()" style="margin-top: 15px;margin-left:15px; font-size: x-large;color: black;"><i class="fa-solid fa-xmark" ></i></a>
+           <h5 style="text-align: center; margin-top: 0%;">Add Opportunity!
+           </h5>
+           <br>
+           <form *ngIf="Opportunity">
+             <input [hidden]="hideform" style="width: 80%; margin-left: 10%;" class="form-control"  type="text" name="title" placeholder="Title ex:Stage PFE" [(ngModel)]="Opportunity.title" required #title="ngModel">
+             <br>
+             <input [hidden]="hideform" style="width: 80%; margin-left: 10%;" class="form-control"  type="text" name="email" placeholder="email" [(ngModel)]="Opportunity.email" required #email="ngModel">
+             <br>
+             <input [hidden]="hideform" style="width: 80%; margin-left: 10%;" class="form-control"  type="text" name="numtlf" placeholder="numtlf" [(ngModel)]="Opportunity.numtlf" required #numtlf="ngModel">
+             <br>
+             <textarea [hidden]="hideform" style="width: 80%; margin-left: 10%;" class="form-control"  type="text" name="description" placeholder="Description" cols="30" rows="5" [(ngModel)]="Opportunity.description" required #description="ngModel"></textarea>
+             <br>
+             <input [hidden]="hideimage" style="width: 80%; margin-left: 10%; margin-bottom: 15px;" class="form-control" type="file" name="image" (change)="onFileSelected($event)" accept=".jpeg, .png, .jpg" />
+            <button [hidden]="hideform" class="btn btn-primary" style="margin-left: 45%;" (click)="addOpportunity(Opportunity)" [disabled]="title.invalid || description.invalid || email.invalid ">Next</button>
+            <a routerLink="/home/opportunities" href="/home" >
+              <input [hidden]="hideimage" class="btn btn-primary" style="margin-left: 45%; margin-top: 15px;" type="submit" (click)="addImage()" value="Add Post" />
+            </a>
+            <div class="alert alert-success" [hidden]="showmsg" style=" width: 400px; margin-left: 28%; text-align: center; border-radius: 15px; margin-top: 40px;">
+            {{ msg }}
+            </div>
+           </form>
+         </div>
+       </div>
+     </div>
+   </div>
+ </div>
+
+ <!--Opportunities-->
+<div class="blog-slider5">
+    <h4 style="text-align: center;">Here Is {{nOpportunity}} Opportunities</h4>
+    <br>
+    <br>
+    <div class="container" >
+      <div class="row">
+        <div  *ngFor="let opprtunities of ListOpportunity; let i of index" >
+          <div class="main-card" style="width: 100%;" >
+            <div class="cards"  >
+              <div class="card" style="width: 400px; min-height: 250px; height: 80%;" >
+                <div class="content">
+                  <li style="list-style-type: none;">
+                    <img src="http://localhost:9091/User/{{ opprtunities.user.profileImage }}" style="width: 50px; height: 50px; border-radius: 50%; border: 2px solid #5A54FF; display: inline;" alt=""/>
+                    <a class="nav-link" style="font-weight: bold; display: inline; color: black; ">
+                      <i class="ion-md-power"></i> {{opprtunities.user.nom}} {{opprtunities.user.prenom}}
+                    </a>
+                    <a (click)="openalert(contentalert); setOpportunityId(opprtunities._id) " [hidden]="hideSupp(opprtunities.user._id)" [hidden]="hideUpp(opprtunities.user._id)">
+                      <fa-icon style="color: red;" [icon]="faTrash"  class="material-icons"></fa-icon>
+                    </a>
+                    <a [hidden]="hideform" (click)="topFunction()" [routerLink]="['/updateopportunity',opprtunities._id]" [hidden]="hideUpp(opprtunities.user._id)" [hidden]="hideUpp(opprtunities.user._id)">
+                      <fa-icon style="color: blue;" [icon]="faPencilAlt"  class="material-icons"></fa-icon>
+                    </a>
+                    <br>
+                    <br>
+                    <small>Published on : {{opprtunities.date}}</small>
+                  </li>
+                  <div class="img" style="border:2px red !important;">
+                    <img src="http://localhost:9091/Opportunity/{{ opprtunities.image }}" style="width: 307px;max-height: 307px;" alt="Opportunity Picture" (click)="setOpportunityId(opprtunities._id)" routerLink="/home/opportunities/opportunity" />
+                  </div>
+                  <div class="details">
+                    <div class="name" style="hyphens: none;">{{opprtunities.title}}</div>
+                  </div>
+                  <br>
+                  <p style="width: 80%; height: 90px;">{{opprtunities.description}}</p>
+                  <br>
+                  <!--<a style="color: #5A54FF;  margin-left: 70%; margin-top: -60px;">
+                    <fa-icon [icon]="faComment"  class="material-icons"></fa-icon>
+                    <p style="color: #5A54FF;"> {{opprtunities.nombreCommentaire}} Comments </p>
+                  </a>-->
+                 <!-- <a style=" font-size: large; margin-left: -80%;margin-top: -18%;" (click)="likePost(posts._id)"  href="/home/posts">
+                    <fa-icon style="color: #5A54FF;" [icon]="faThumbsUp"  class="material-icons"></fa-icon>
+                  </a>
+                  <a style=" font-size: large; margin-left: -65%; margin-top: -6.3%; " (click)="dislikePost(posts._id)"  href="/home/posts">
+                    <fa-icon style="color: #5A54FF;" [icon]="faThumbsDown"  class="material-icons"></fa-icon>
+                  </a>
+                    <p style="color: #5A54FF; margin-left: -72%;">{{posts.like}} Like</p>-->
+                  <br>
+                  <br>
+                </div>
+                <br>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+  <!--Delete-->
+<ng-template #contentalert let-modal>
+  <div class="modal-header">
+    <h5 style="color: #000000; text-align: center;" class="modal-title" id="modal-basic-title">Are You Sur to delete this Opportunity ?</h5>
+    <a href="/home/opportunities">
+      <button type="button" class="btn-close" aria-label="Close" (click)="modal.dismiss('Cross click')"></button>
+    </a>
+  </div>
+  <div class="modal-body" >
+    <form>
+      <div class="form-group" style="align-items: center;">
+        <a style="color: red;" href="/home/opportunities" class="btn btn-default" (click)="deleteOpportunity(); modal.dismiss('Cross click')">Confirm</a>
+        <a style="color: green;" class="btn btn-link" class="btn btn-default" href="/home/opportunities" (click)="modal.dismiss('Cross click')">Cancel</a>
+      </div>
+    </form>
+  </div>
+</ng-template>
