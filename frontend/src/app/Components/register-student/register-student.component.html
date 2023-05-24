@@ -1,0 +1,98 @@
+<div class="bg">
+  <div class="wrapper">
+    <div class="headline">
+      <h1>Student Registration</h1>
+    </div>
+    <form [formGroup]="form" (ngSubmit)="signIn()">
+     
+        <!--Nom--> <!--prenom-->
+        <div class="form-row">
+          <div class="col">
+            <div style="color:#FFFFFF;padding-bottom: 10px;padding-left: 15px;">Nom</div>
+            <div class="form-group">
+              <input type="text" class="form-control" placeholder="foulen" formControlName="nom" required/>
+              <div class="alert alert-danger" *ngIf="f.nom.invalid && f.nom.touched" style="text-align: center; width: 500px; margin-left: 80px">
+                Nom is a Required Field !
+              </div>
+            </div>
+          </div>
+          <div class="col">
+            <div style="color:#FFFFFF;padding-bottom: 10px;padding-left: 15px;">Prenom</div>
+            <div class="form-group">
+              <input type="text" class="form-control" placeholder="ben foulen" formControlName="prenom" required/>
+              <div class="alert alert-danger" *ngIf="f.prenom.invalid && f.prenom.touched" style="text-align: center; width: 500px; margin-left: 80px">
+                Prenom is a Required Field !
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!--Email-->
+        <div style="color:#FFFFFF;padding-bottom: 10px;padding-left: 15px;">Email</div>
+        <div class="signup">
+          <div class="form-group">
+            <input type="email" class="form-control" placeholder="Your mail" formControlName="email" required />
+            <div class="alert alert-danger" *ngIf="f.email.invalid && f.email.touched" style="text-align: center; width: 500px; margin-left: 80px">
+              Email is a required field!
+            </div>
+          </div>
+
+          <!-- Sex -->
+      <div style="color:#FFFFFF;padding-bottom: 10px;padding-left: 15px;">Sex</div>
+      <div class="form-group">
+        <select class="form-control" formControlName="sex" required>
+          <option value="" disabled selected>Select Sex</option>
+          <option value="male">Male</option>
+          <option value="female">Female</option>
+        </select>
+        <div class="alert alert-danger" *ngIf="f.sex.invalid && f.sex.touched"
+             style="text-align: center; width: 500px; margin-left: 80px">
+          Sex is a Required Field !
+        </div>
+      </div>
+
+
+          <!-- Date de naissance -->
+          <div style="color:#FFFFFF;padding-bottom: 10px;padding-left: 15px;">Date de naissance</div>
+          <div class="form-group">
+            <input type="date" class="form-control" placeholder="Date de naissance" formControlName="dateNaissance" required/>
+            <div class="alert alert-danger" *ngIf="f.dateNaissance.invalid && f.dateNaissance.touched"
+                 style="text-align: center; width: 500px; margin-left: 80px">
+              Date de naissance is a Required Field !
+            </div>
+          </div>
+
+        <!--Password-->
+        <div style="color:#FFFFFF;padding-bottom: 10px;padding-left: 15px;">Password</div>
+        <div class="form-group">
+          <input type="{{ hide ? 'password' : 'text' }}" type="password" class="form-control" placeholder="Password" formControlName="mdp" required />
+          <fa-icon [icon]="faEye" style="display: flex;float: right; transform: translateY(-230%);margin-right: 2%;cursor: pointer; color: #2f3044; font-size: x-large;" class="material-icons" matSuffix (click)="hide = !hide" >{{ hide ? "Show" : "Hide" }}></fa-icon>
+          <div class="alert alert-danger" *ngIf="f.mdp.invalid && f.mdp.touched" style="text-align: center; width: 500px; margin-left: 80px">
+            Password is a required field and should have at least 6 characters!
+          </div>
+        </div>
+
+      
+
+        <div class="forget-password">
+          <div class="check-box">
+            <input type="checkbox" id="checkbox" formControlName="regle" required />
+            <label for="checkbox" style="margin-top: 0px ;color:#FFFFFF;"> &nbsp;I accept
+              <a href="/home/login/confidentialite" style="color: #00adef"> the privacy rules</a>
+            </label>
+          </div>
+          <div class="check-box"></div>
+          <a href="/home/Register" style="color: white ;">Want to register as a Club?</a>
+        </div>
+        <button [disabled]="form.invalid"  class="btn">Sign Up</button>
+        <div [hidden]="hideMsg" class="alert alert-danger" style="width: 500px; margin-left: 250px; text-align: center; border-radius: 15px;">
+          {{ msg }}
+         </div>
+         <div class="account-exist">
+           Already Had a student Account ?<a href="home/login">Click Here</a>
+         </div>
+         <div class="account-exist"></div>
+       </div>
+     </form>
+   </div>
+   </div>

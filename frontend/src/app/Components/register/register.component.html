@@ -1,0 +1,145 @@
+<div class="bg">
+  <div class="wrapper">
+    <div class="headline">
+      <h1>Club Registration</h1>
+    </div>
+    <form [formGroup]="formregister" (ngSubmit)="Register()" novalidate>
+      <div class="signup">
+        <!--
+        <div style="color:#FFFFFF;padding-bottom: 10px;padding-left: 15px;">Nom</div>
+        <div class="form-group">
+          <input type="text" class="form-control" placeholder="Club mail" formControlName="nom" required />
+          <div class="alert alert-danger" *ngIf="f.nom.invalid && (f.nom.dirty || f.nom.touched)">
+            Nom is a Required Field!
+          </div>
+        </div>
+
+        <div style="color:#FFFFFF;padding-bottom: 10px;padding-left: 15px;">Prenom</div>
+        <div class="form-group">
+          <input type="text" class="form-control" placeholder="Club mail" formControlName="prenom" required />
+          <div class="alert alert-danger" *ngIf="f.prenom.invalid && (f.prenom.dirty || f.prenom.touched)">
+            Prenom is a Required Field!
+          </div>
+        </div>
+-->
+
+<div class="form-row">
+  <div class="col">
+    <div style="color:#FFFFFF;padding-bottom: 10px;padding-left: 15px;">Last name</div>
+    <div class="form-group">
+      <input type="text" class="form-control" placeholder="ben foulen" formControlName="nom" required/>
+      <div class="alert alert-danger" *ngIf="f.nom.invalid && f.nom.touched" style="text-align: center; width: 500px; margin-left: 80px">
+        Last name is a Required Field !
+      </div>
+    </div>
+  </div>
+  <div class="col">
+    <div style="color:#FFFFFF;padding-bottom: 10px;padding-left: 15px;">Name</div>
+    <div class="form-group">
+      <input type="text" class="form-control" placeholder="foulen" formControlName="prenom" required/>
+      <div class="alert alert-danger" *ngIf="f.prenom.invalid && f.prenom.touched" style="text-align: center; width: 500px; margin-left: 80px"
+      style="text-align: center; width: 500px; margin-left: 80px">
+        Prenom is a Required Field !
+      </div>
+    </div>
+  </div>
+</div>
+
+        <div style="color:#FFFFFF;padding-bottom: 10px;padding-left: 15px;">Email</div>
+        <div class="form-group">
+          <input type="email" class="form-control" placeholder="foulen@mail.com" formControlName="email" required />
+          <div class="alert alert-danger" *ngIf="f.email.invalid && (f.email.dirty || f.email.touched)"
+          style="text-align: center; width: 500px; margin-left: 80px">
+            Email is a Required Field!
+          </div>
+        </div>
+
+        <div style="color:#FFFFFF;padding-bottom: 10px;padding-left: 15px;">Club Name</div>
+        <div class="form-group">
+          <input type="text" class="form-control" placeholder="Club name" formControlName="titre" required />
+          <div class="alert alert-danger" *ngIf="f.titre.invalid && (f.titre.dirty || f.titre.touched)"
+          style="text-align: center; width: 500px; margin-left: 80px">
+            Club name is a Required Field!
+          </div>
+        </div>
+
+        <div style="color:#FFFFFF;padding-bottom: 10px;padding-left: 15px;">Category</div>
+        <div class="form-group">
+          <input type="text" class="form-control" placeholder="Artistic" formControlName="category" required />
+          <div class="alert alert-danger" *ngIf="f.category.invalid && (f.category.dirty || f.category.touched)"
+          style="text-align: center; width: 500px; margin-left: 80px">
+            Category is a Required Field!
+          </div>
+        </div>
+
+         <!-- Date de naissance -->
+         <div style="color:#FFFFFF;padding-bottom: 10px;padding-left: 15px;">Creation Date</div>
+         <div class="form-group">
+           <input type="date" class="form-control" placeholder="Date de naissance" formControlName="dateNaissance" required/>
+           <div class="alert alert-danger" *ngIf="f.dateNaissance.invalid && f.dateNaissance.touched"
+                style="text-align: center; width: 500px; margin-left: 80px">
+             Creation Date is a Required Field !
+           </div>
+         </div>
+
+        <div style="color:#FFFFFF;padding-bottom: 10px;padding-left: 15px;">University</div>
+        <div class="form-group">
+          <input type="text" class="form-control" placeholder="ISAMM" formControlName="university" required />
+          <div class="alert alert-danger" *ngIf="f.university.invalid && (f.university.dirty || f.university.touched)"
+          style="text-align: center; width: 500px; margin-left: 80px">
+            "University is a Required Field!"
+          </div>
+        </div>
+
+        <div style="color:#FFFFFF;padding-bottom: 10px;padding-left: 15px;">Password</div>
+        <div class="form-group">
+          <input type="{{ hide ? 'password' : 'text' }}" class="form-control" placeholder="Password" formControlName="mdp" required />
+          <fa-icon [icon]="faEye" style="display: flex;float: right; transform: translateY(-230%);margin-right: 2%;cursor: pointer; color: #2f3044; font-size: x-large;" class="material-icons" matSuffix (click)="hide = !hide" >{{ hide ? "Show" : "Hide" }}></fa-icon>
+          <div class="alert alert-danger" *ngIf="f.mdp.invalid && (f.mdp.dirty || f.mdp.touched)"
+          style="text-align: center; width: 500px; margin-left: 80px">
+            Password is a Required Field!
+          </div>
+        </div>
+
+        <div style="color:#FFFFFF;padding-bottom: 10px;padding-left: 15px;">Recent activities (optional)</div>
+        <div class="form-group">
+          <textarea class="form-control" placeholder="Write ..." formControlName="activities"></textarea>
+        </div>
+
+        <div class="forget-password">
+          <div class="check-box">
+            <input type="checkbox" id="checkbox" formControlName="regle" required />
+            <label for="checkbox" style="margin-top: 0px;color: #FFFFFF;">
+              &nbsp;I accept
+              <a href="/home/login/confidentialite" style="color: #00adef">the privacy rules</a>
+            </label>
+          </div>
+          <div class="check-box"></div>
+          <a href="/home/Register-student" style="color: white">Want to register as a Student?</a>
+        </div>
+
+    <!--uploading picture
+        
+         <div class="form-group">
+          <div style="color: #FFFFFF; padding-bottom: 10px; padding-left: 15px;">Upload Picture</div>
+          <div class="file-upload">
+            <input type="file" id="picture" formControlName="profileImage" accept="image/*" (change)="onImageSelected($event)" />
+            <label for="profileImage">
+              <span class="upload-icon"></span>
+            </label>
+          </div>
+        </div>-->
+
+        <button [disabled]="formregister.invalid"  class="btn">Sign Up</button>
+
+        <div [hidden]="hideMsg" class="alert alert-danger" style="width: 500px; margin-left: 250px; text-align: center; border-radius: 15px;">
+          {{ msg }}
+        </div>
+        <div class="account-exist">
+          Already have a club account? <a href="home/login">Click Here</a>
+        </div>
+        <div class="account-exist"></div>
+      </div>
+    </form>
+  </div>
+</div>
