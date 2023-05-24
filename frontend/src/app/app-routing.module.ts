@@ -40,6 +40,7 @@ import { OpportunitiesComponent } from './Components/opportunities/opportunities
 import { OpportunityComponent } from './Components/opportunity/opportunity.component';
 import { UpdateopportunityComponent } from './Components/updateopportunity/updateopportunity.component';
 import { GestionAlumniComponent } from './Components/gestion-alumni/gestion-alumni.component';
+import { RegisterStudentComponent } from './Components/register-student/register-student.component';
 const routes: Routes = [
   {path:'updatepost/:id',component:UpdatepostComponent},
   {path:'updateopportunity/:id',component:UpdateopportunityComponent},
@@ -51,6 +52,7 @@ const routes: Routes = [
       { path: '', component: HomeComponent }, //http://localhost:4200/home
       { path: 'contact', component: ContactComponent }, //http://localhost:4200/home/contact
       { path: 'Register', component: RegisterComponent }, //http://localhost:4200/Register
+      { path: 'Register-student', component:RegisterStudentComponent},//http://localhost:4200/Register-student
       { path: 'howitwork', component: HowItWorkComponent }, //http://localhost:4200/home/howitwork
       { path: 'partnership', component: PartnerShipComponent }, //http://localhost:4200/home/partnership
       {
